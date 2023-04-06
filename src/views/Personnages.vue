@@ -46,15 +46,16 @@ img{
 
 
 <template>
-<div>
+
     <h1>Liste des personnages</h1>
     
     <div class="recherchebox">
-        <label for="recherche">Rechercher un personnage</label>
-        <input type="text" id="recherche" v-model="recherche" placeholder="rechercher">
-        <button @click="rechercher">rechercher</button>
+    
+      <input v-model="recherche" placeholder="edit me">
+
+      <button @click="chercher">Rechercher</button>
         <div>
-            <button @click="suivant">suivant</button></div>
+            <button @click="suivant">suivant</button>
         </div>
     </div>
         <div class="persodash">
@@ -71,6 +72,7 @@ img{
 
 <script>
 import axios from "axios";
+import { ref } from "vue";
 
 export default {
   data() {
@@ -82,17 +84,26 @@ export default {
     const response = await axios.get("https://rickandmortyapi.com/api/character");
     this.characters = response.data.results;
   },
-};
-
-
-
-const rechercher = async () => {
-  data.value = await fetch(`https://restcountries.com/v3.1/name/${recherche.value}`)
-      .then(async (response) => await response.json())
-      .then((data) => data)
 }
+
+const recherche = ref('')
+let data = ref([])
+
+const chercher = async () => {
+    const response = await axios.get('https://rickandmortyapi.com/api/character' + recherche.value)
+    data.value = response.data
+}
+
+
+const suivant = async () => {
+    const response = await axios.get('https://rickandmortyapi.com/api/character?page=2')
+    data.value = response.data
+}
+
+
 
 
 </script>
 
   
+

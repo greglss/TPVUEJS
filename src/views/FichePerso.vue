@@ -20,12 +20,8 @@ onMounted(async () => {
         <div :key="data.id"> </div>
         <img :src="data.image" alt="">
         <h2>{{ data.name }}</h2>
+        <p>{{ data.status }}</p>
     </div>
 </template>
 
 <style scoped></style>
-
-j'ai ce code
-
-
-http://localhost:5173/%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name:%20'fiche-perso',%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20params:%20%7B%20id:%20character.id%20%7D%20%20%20%20%20%20%20%20%20%20%20%20%7D
